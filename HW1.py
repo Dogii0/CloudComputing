@@ -13,8 +13,7 @@ def handle_client(clientS):
     try:
         with open("webFile" + htmlFile, "rb") as file:
             responseBody = file.read()
-        response = """HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: {}\r\n\r\n{}""".format(
-            len(responseBody), responseBody.decode())
+        response = """HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: {}\r\n\r\n{}""".format(len(responseBody), responseBody.decode())
     
     except FileNotFoundError:
         response = "HTTP/1.1 404 Not Found\r\n\r\n404 Not Found"
@@ -31,10 +30,10 @@ def main():
 
     # 2. Accepting Connection Requests
     serverS.listen(5)
-    print("[*] Listening on port 80")
+    print("Listening on port 80")
     while True:
         clientS, addr = serverS.accept()
-        print("[*] Accepted connection from: %s:%d" % (addr[0], addr[1]))
+        print("Accepted connection from: %s:%d" % (addr[0], addr[1]))
 
         handler = threading.Thread(target=handle_client, args=(clientS,))
         handler.start()
